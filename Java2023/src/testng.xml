@@ -1,0 +1,137 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd"><!-- this defines the format of this
+specific xml file -->
+
+<!-- testng xml is a file which holds configurations for our test suites -->
+<!-- test configs -->
+<!-- configuration - settings -->
+<!-- some code(app) should be able to run in different servers connecting to different databases -->
+<!-- in selenium you will have a config which tells your framework to run tests in Chrome or Firefox -->
+
+<!-- browser=chrome -->
+<!-- config file types :
+.xml -> eXtensible Markup Language
+.html -> hyper text markup language
+.properties
+.json
+.ini
+.yaml
+.csv -->
+
+<!-- {  } -->
+<!-- < - tags -->
+<!-- each tag must be closed -->
+<!-- name is an attribute of a suite tag -->
+
+<suite name="Regression">
+    <test name="RegressionTest">
+        <!-- parameter work like maps they have keys and values in xml file we define both the key
+        and value. In the test java classes we will only use the key to retrieve the values -->
+        <parameter name="browser" value="chrome"/>
+        <parameter name="env" value="qa2"/>
+
+        <!-- run tests based on groups -->
+        <!-- run tests which have the provided group -->
+        <groups>
+            <!-- you can create a new group from exisiting groups right in the xml -->
+            <define name="sanityTest">
+                <include name="payment"/>
+                <include name="statement"/>
+            </define>
+
+            <define name="minorRegression">
+                <include name="smoke"/>
+            </define>
+
+
+            <run>
+                <include name="smoke"/>
+                <exclude name="payment"/>
+                <exclude name ="statement"/>
+                <!--                <include name="sanityTest"/>-->
+                <!--                <include name="minorRegression"/>-->
+                <!--                <include name="payment"/>-->
+                <!--                <include name="account"/>-->
+                <!--                <include name="statement"/>-->
+            </run>
+        </groups>
+
+        <!-- define classes that have to be scanned for tests -->
+        <classes>
+            <!-- instead of creating runner classes like Junit we define test suites in xml file -->
+            <class name="tests.testng.TestNGDemo1"/>
+            <class name="tests.testng.CalculateBonusTest"/>
+            <class name="tests.testng.TestNGGroups"></class>
+            <class name="tests.testng.WebAppTest"/>
+            <!--            <class name="tests.testng.CalculateBonusTest2"></class>-->
+        </classes>
+    </test>
+
+    <test name="Regression ON FireFox">
+
+        <parameter name="browser" value="firefox"/>
+        <parameter name="env" value="qa3"/>
+        <groups>
+            <run>
+                <include name="smoke"/>
+                <exclude name="payment"/>
+                <exclude name ="statement"/>
+            </run>
+        </groups>
+
+        <classes>
+            <!-- instead of creating runner classes like Junit we define test suites in xml file -->
+            <class name="tests.testng.TestNGDemo1"/>
+            <class name="tests.testng.CalculateBonusTest"/>
+            <class name="tests.testng.TestNGGroups"/>
+            <class name="tests.testng.WebAppTest"/>
+            <!--            <class name="tests.testng.CalculateBonusTest2"></class>-->
+        </classes>
+    </test>
+
+
+    <test name="Regression2 ON FireFox">
+
+        <parameter name="browser" value="firefox"/>
+        <parameter name="env" value="qa4"/>
+        <groups>
+            <run>
+                <include name="regression4"/>
+                <exclude name="payment"/>
+                <exclude name ="statement"/>
+            </run>
+        </groups>
+
+        <classes>
+            <!-- instead of creating runner classes like Junit we define test suites in xml file -->
+            <class name="tests.testng.TestNGDemo1"/>
+            <class name="tests.testng.CalculateBonusTest"/>
+            <class name="tests.testng.TestNGGroups"></class>
+            <class name="tests.testng.WebAppTest"/>
+            <!--            <class name="tests.testng.CalculateBonusTest2"></class>-->
+        </classes>
+    </test>
+
+
+    <test name="Regression3 ON FireFox">
+
+        <parameter name="browser" value="firefox"/>
+        <parameter name="env" value="qa3"/>
+        <groups>
+            <run>
+                <include name="regression3"/>
+                <exclude name="payment"/>
+                <exclude name ="statement"/>
+            </run>
+        </groups>
+
+        <classes>
+            <!-- instead of creating runner classes like Junit we define test suites in xml file -->
+            <class name="tests.testng.TestNGDemo1"/>
+            <class name="tests.testng.CalculateBonusTest"/>
+            <class name="tests.testng.TestNGGroups"/>
+            <class name="tests.testng.WebAppTest"/>
+            <!--            <class name="tests.testng.CalculateBonusTest2"></class>-->
+        </classes>
+    </test>
+</suite>
